@@ -3,7 +3,6 @@ import supabase from "../config/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 const SmoothieCard = ({ smoothie, onDelete }) => {
-	const navigate = useNavigate();
 	const { id, title, method, rating } = smoothie;
 
 	const deleteHandler = async () => {
