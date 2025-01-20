@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import supabase from "../config/supabaseClient";
 
 const Create = () => {
+	const navigate = useNavigate();
+
 	const [title, setTitle] = useState("");
 	const [method, setMethod] = useState("");
 	const [rating, setRating] = useState("");
@@ -31,6 +34,7 @@ const Create = () => {
 			} else {
 				console.log("Inserted data:", data);
 				setFormError(null);
+				navigate("/");
 			}
 		} catch (err) {
 			console.error("Unexpected error:", err);
@@ -39,7 +43,6 @@ const Create = () => {
 
 	return (
 		<div className="page create">
-			<h2>Create</h2>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="title">Title:</label>
 				<input
