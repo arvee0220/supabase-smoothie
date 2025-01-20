@@ -9,7 +9,10 @@ const Home = () => {
 	useEffect(() => {
 		const fetchSmoothies = async () => {
 			try {
-				const { data, error } = await supabase.from("smoothies").select();
+				const { data, error } = await supabase
+					.from("smoothies")
+					.select()
+					.order("rating", { ascending: false });
 
 				if (error) {
 					setFetchError("Could not fetch smoothies");
@@ -22,7 +25,7 @@ const Home = () => {
 					setFetchError(null);
 				}
 			} catch (e) {
-				console.table(e);
+				console.log(e);
 			}
 		};
 
