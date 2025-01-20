@@ -21,7 +21,7 @@ const SmoothieCard = ({ smoothie, onDelete }) => {
 		<div className="smoothie-card">
 			<h3>{title}</h3>
 			<p>{method}</p>
-			<div className="rating">{rating}</div>
+			<div className="rating">{rating}/10</div>
 			<div className="buttons">
 				<Link to={"/" + smoothie.id}>
 					<i className="material-icons">edit</i>
