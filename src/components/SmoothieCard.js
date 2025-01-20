@@ -1,32 +1,26 @@
 import { Link } from "react-router-dom";
-import supabase from "../config/supabaseClient";
 
 const SmoothieCard = ({ smoothie, onDelete }) => {
 	const { id, title, method, rating } = smoothie;
 
-	const deleteHandler = async () => {
-		try {
-			const { error } = await supabase.from("smoothies").delete().eq("id", id);
-
-			if (onDelete) onDelete(id);
-
-			if (error) {
-				console.log(error);
-			}
-		} catch (e) {
-			console.log(e);
+	const handleDelete = () => {
+		if (typeof onDelete === "function") {
+			onDelete(id);
+		} else {
+			console.error("onDelete is not a function");
 		}
 	};
+
 	return (
 		<div className="smoothie-card">
 			<h3>{title}</h3>
 			<p>{method}</p>
 			<div className="rating">{rating}/10</div>
 			<div className="buttons">
-				<Link to={"/" + smoothie.id}>
+				<Link to={"/" + id}>
 					<i className="material-icons">edit</i>
 				</Link>
-				<i className="material-icons" onClick={deleteHandler}>
+				<i className="material-icons" onClick={handleDelete}>
 					delete
 				</i>
 			</div>

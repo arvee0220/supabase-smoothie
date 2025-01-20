@@ -1,6 +1,8 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import supabase from "../config/supabaseClient";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Update = () => {
 	const { id } = useParams();
@@ -90,7 +92,14 @@ const Update = () => {
 					value={rating}
 					onChange={(e) => setRating(e.target.value)}
 				/>
-				<button type="submit">Update Smoothie</button>
+				<div className="update-buttons">
+					<button type="submit">Update Smoothie</button>
+					<button>
+						<Link to={"/"} className="link">
+							Cancel
+						</Link>
+					</button>
+				</div>
 				{formError && <p className="error">{formError}</p>}
 			</form>
 		</div>
